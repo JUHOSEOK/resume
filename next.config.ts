@@ -15,6 +15,11 @@ const nextConfig: NextConfig = {
   // Vercel용 설정 (기본값)
   ...(process.env.GITHUB_PAGES !== 'true' && {
     trailingSlash: false,
+    outputFileTracingIncludes: {
+      '/api/generate-pdf': [
+        './node_modules/@sparticuz/chromium/bin/**/*',
+      ],
+    },
   }),
   images: {
     unoptimized: true,
