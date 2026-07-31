@@ -17,10 +17,20 @@ export async function POST(request: NextRequest) {
         // 먼저 @sparticuz/chromium 시도 (Vercel 환경에서 최적화됨)
         try {
             browser = await puppeteer.launch({
-                args: chromium.args,
-                defaultViewport: chromium.defaultViewport,
+                args: await puppeteer.defaultArgs({
+                    args: chromium.args,
+                    headless: 'shell',
+                }),
+                defaultViewport: {
+                    deviceScaleFactor: 1,
+                    hasTouch: false,
+                    height: 1080,
+                    isLandscape: false,
+                    isMobile: false,
+                    width: 1920,
+                },
                 executablePath: await chromium.executablePath(),
-                headless: chromium.headless,
+                headless: 'shell',
             });
             console.log('Using @sparticuz/chromium');
         } catch (chromiumError) {
