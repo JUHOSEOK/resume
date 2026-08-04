@@ -26,13 +26,13 @@ export default function ContactInfo({ email, phone, blog, github }: ContactInfoP
       // 클라이언트 사이드에서는 현재 경로를 기반으로 판단
       // 개발 모드에서는 basePath가 없으므로 /images/profile.jpg 사용
       return window.location.pathname.startsWith('/resume') && process.env.NODE_ENV === 'production'
-        ? '/resume/images/profile.jpg'
-        : '/images/profile.jpg';
+        ? '/resume/images/profile.png'
+        : '/images/profile.png';
     }
     // 서버 사이드에서는 환경변수와 빌드 모드로 판단
     return process.env.GITHUB_PAGES === 'true' && process.env.NODE_ENV === 'production'
-      ? '/resume/images/profile.jpg'
-      : '/images/profile.jpg';
+      ? '/resume/images/profile.png'
+      : '/images/profile.png';
   };
 
   const handleImageError = () => {
